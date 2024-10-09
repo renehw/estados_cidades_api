@@ -1,0 +1,7 @@
+## Find all states
+http://localhost:8000/api/states
+Content-Type: "application/json"
+
+### Find all cities in a state
+http://localhost:8000/api/cities/PR
+Content-Type: "application/json"

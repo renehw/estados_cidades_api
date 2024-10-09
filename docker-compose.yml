@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./docker/redis.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    networks:
+      - redis-network
+  
+  phpredisadmin:
+    image: erikdubbelboer/phpredisadmin
+    container_name: phpredisadmin
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      - REDIS_1_HOST=redis
+      - REDIS_1_AUTH=admin
+    networks:
+      - redis-network
+    restart: unless-stopped
+
+  # vania:
+  #   build: .
+  #   image: vania/app:latest
+  #   container_name: vania
+  #   restart: always
+  #   volumes:
+  #     - app:/app
+  #     - ./public:/public
+  #     - ./storage:/storage
+  #   ports:
+  #     - "8000:8000"
+
+volumes:
+  app:
+  redis-data:
+
+networks:
+  redis-network:
+    driver: bridge
+    name: redis-network
