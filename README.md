@@ -74,6 +74,10 @@ Retorna uma lista de estados.
 
 Retorna uma lista de cidades para um estado específico.
 
+## API Externa
+
+Este projeto utiliza a [BrasilAPI](https://brasilapi.com.br/docs#tag/IBGE/paths/~1ibge~1municipios~1v1~1{siglaUF}?providers=dados-abertos-br,gov,wikipedia/get) para obter informações sobre estados e cidades do Brasil.
+
 ## Testes
 
 Para rodar os testes, execute:
